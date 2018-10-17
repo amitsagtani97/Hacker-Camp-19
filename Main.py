@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from datetime import date
+from dataBase import UsersData
 import urllib2
 import smtplib
 
@@ -11,6 +12,7 @@ yearLetter = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "S
 
 def getTitleId(TvSeriesList, emailAddress):
     msg = ""
+    DataBase.addUser(User, TvSeriesList)
     for seriesName in TvSeriesList:
         print "Fetching details for " + seriesName + " ....."
         msg += "TV Series: " + seriesName + "\n"
@@ -122,6 +124,10 @@ def main():
     emailAddress = raw_input("Email address: ")
     TvSeriesList = raw_input("TV Series: ").split(',')
     getTitleId(TvSeriesList, emailAddress)
+
+
+DataBase = UsersData()
+DataBase.connectData()
 
 if __name__ == '__main__':
     main()
