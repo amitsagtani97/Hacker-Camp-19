@@ -12,7 +12,10 @@ yearLetter = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "S
 
 def getTitleId(TvSeriesList, emailAddress):
     msg = ""
-    DataBase.addUser(User, TvSeriesList)
+    try:
+        DataBase.addUser(emailAddress, TvSeriesList)
+    except:
+        print("Error in creating database.")
     for seriesName in TvSeriesList:
         print "Fetching details for " + seriesName + " ....."
         msg += "TV Series: " + seriesName + "\n"
